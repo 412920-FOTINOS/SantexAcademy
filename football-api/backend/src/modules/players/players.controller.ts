@@ -7,9 +7,15 @@ import {
   Param,
   ParseIntPipe,
   Query,
+  Patch,
+  Body,
+  Post
 } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { PlayerDto } from './dto/player.dto';
+import { UpdatePlayerDto } from './dto/update-player.dto';
+import { CreatePlayerDto } from './dto/create-player.dto';
+
 
 
 @Controller('api/players')
@@ -29,8 +35,23 @@ export class PlayersController {
     return new PlayerDto(player);
   }
   
-  // Creao
-    @Get()
+  @Patch(':id')
+  @HttpCode(HttpStatus.OK)
+  async updatePlayer(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updatePlayerDto: UpdatePlayerDto
+  ) {
+    return this.playersService.updatePlayer(id, updatePlayerDto);
+  }
+
+@Post()
+@HttpCode(HttpStatus.CREATED)
+async createPlayer(@Body() createPlayerDto: CreatePlayerDto): Promise<PlayerDto> {
+  const player = await this.playersService.createPlayer(createPlayerDto);
+  return new PlayerDto(player); 
+}
+
+  @Get()
   @HttpCode(HttpStatus.OK)
   async getPlayers(
     @Query('page') page: string = '1',

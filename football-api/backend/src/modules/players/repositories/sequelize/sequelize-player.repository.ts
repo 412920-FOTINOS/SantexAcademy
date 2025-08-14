@@ -3,6 +3,9 @@ import { InjectModel } from '@nestjs/sequelize';
 import { PlayerModel } from './player.model'; // Sequelize model
 import { IPlayerRepository } from '../../interfaces/player-repository.interface';
 import { Player } from '../../entities/player.entity';
+import { UpdatePlayerDto } from '../../dto/update-player.dto';
+import { CreatePlayerDto } from '../../dto/create-player.dto';
+
 
 @Injectable()
 export class SequelizePlayerRepository implements IPlayerRepository {
@@ -15,6 +18,33 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     const playerList = await this.playerModel.findAll();
     return playerList.map((x) => this.mapToEntity(x));
   }
+
+  async update(id: number, updatePlayerDto: UpdatePlayerDto): Promise<Player | undefined> {
+    const player = await PlayerModel.findByPk(id);
+    if (!player) return undefined;
+    await player.update(updatePlayerDto);
+    return this.mapToEntity(player);
+  }
+
+async create(createPlayerDto: CreatePlayerDto): Promise<Player> {
+  const model = await this.playerModel.create({
+    longName: createPlayerDto.name,
+    clubName: createPlayerDto.club,
+    playerPositions: createPlayerDto.position,
+    nationalityName: createPlayerDto.nationality,
+    overall: createPlayerDto.rating,
+    pace: createPlayerDto.speed,
+    shooting: createPlayerDto.shooting,
+    dribbling: createPlayerDto.dribbling,
+    passing: createPlayerDto.passing,
+    fifaVersion: '24',
+    fifaUpdate: '1',
+    playerFaceUrl: '',
+    potential: createPlayerDto.rating,
+    age: 20,
+  } as any);
+  return this.mapToEntity(model);
+}
 
   async findOneById(id: number): Promise<Player | undefined> {
     const model = await this.playerModel.findByPk(id);
@@ -38,23 +68,20 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     return [players, count];
   }
 
-  private mapToEntity(model: PlayerModel): Player {
-    console.log('Mapping PlayerModel to Player entity:', model);
-    if (!model) {
-      throw new Error('Attempted to map null model to Player entity');
-    }
-    const player = new Player();
-    player.id = model.id;
-    player.name = model.longName;
-    player.club = model.clubName || 'Unknown Club';
-    player.position = model.playerPositions?.split(',')[0].trim() ?? 'Unknown';
-    player.nationality = model.nationalityName || 'Unknown Nationality';
-    player.rating = model.overall;
-    player.speed = model.pace ?? 0;
-    player.shooting = model.shooting ?? 0;
-    player.dribbling = model.dribbling ?? 0;
-    player.passing = model.passing ?? 0;
-
-    return player;
-  }
+private mapToEntity(model: PlayerModel): Player {
+  const player = new Player();
+  const data = model.dataValues; 
+  player.id = data.id;
+  player.name = data.longName;
+  player.club = data.clubName || 'Unknown Club';
+  player.position = data.playerPositions?.split(',')[0].trim() ?? 'Unknown';
+  player.nationality = data.nationalityName || 'Unknown Nationality';
+  player.rating = data.overall;
+  player.speed = data.pace ?? null;
+  player.shooting = data.shooting ?? null;
+  player.dribbling = data.dribbling ?? null;
+  player.passing = data.passing ?? null;
+  console.log('Valores en dataValues:', data.pace, data.shooting, data.dribbling, data.passing);
+  return player;
+}
 }

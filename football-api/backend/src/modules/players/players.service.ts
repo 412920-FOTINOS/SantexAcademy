@@ -2,6 +2,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { IPlayerRepository } from './interfaces/player-repository.interface';
 import { Player } from './entities/player.entity';
 import { Op } from 'sequelize';
+import { UpdatePlayerDto } from './dto/update-player.dto';
+import { CreatePlayerDto } from './dto/create-player.dto';
+
 
 @Injectable()
 export class PlayersService {
@@ -14,7 +17,14 @@ export class PlayersService {
     return this.playerRepository.findOneById(id);
   }
 
-  //Creao
+  async updatePlayer(id: number, updatePlayerDto: UpdatePlayerDto): Promise<Player | undefined> {
+    return this.playerRepository.update(id, updatePlayerDto);
+  }
+
+  async createPlayer(createPlayerDto: CreatePlayerDto): Promise<Player> {
+    return this.playerRepository.create(createPlayerDto);
+  } 
+
     async findAll(filters: {
     page: number;
     limit: number;

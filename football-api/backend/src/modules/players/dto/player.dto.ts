@@ -5,12 +5,12 @@ export class PlayerDto {
   position: string;
   nationality: string;
   rating: number;
-  speed: number;
-  shooting: number;
-  dribbling: number;
-  passing: number;
+  speed?: number | null;
+  shooting?: number | null;
+  dribbling?: number | null;
+  passing?: number | null;
 
-  constructor(partial: Partial<PlayerDto>) {
-    Object.assign(this, partial);
+  constructor(player: Partial<PlayerDto>) {
+    Object.assign(this, player);
   }
 }
