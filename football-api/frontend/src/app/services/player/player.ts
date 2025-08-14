@@ -1,4 +1,3 @@
-// src/app/services/player.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -26,5 +25,10 @@ export class PlayerService {
 
   getPlayer(id: number): Observable<Player> {
     return this.http.get<Player>(`${this.baseUrl}/${id}`);
+  }
+
+  getPlayers(params: any): Observable<{ data: Player[]; total: number }> {
+    const query = new URLSearchParams(params).toString();
+    return this.http.get<{ data: Player[]; total: number }>(`${this.baseUrl}?${query}`);
   }
 }

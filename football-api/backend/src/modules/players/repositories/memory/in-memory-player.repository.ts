@@ -11,4 +11,14 @@ export class InMemoryPlayerRepository implements IPlayerRepository {
   async findOneById(id: number): Promise<Player | undefined> {
     return Promise.resolve(this.players.find((p) => p.id === id));
   }
+
+  async findAndCount(options: {
+    where?: any;
+    take?: number;
+    skip?: number;
+  }): Promise<[Player[], number]> {
+    const total = this.players.length;
+    const data = [...this.players];
+        return [data, total];
+  }
 }

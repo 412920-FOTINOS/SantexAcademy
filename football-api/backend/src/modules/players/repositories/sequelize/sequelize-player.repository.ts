@@ -24,6 +24,20 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     return this.mapToEntity(model);
   }
 
+  async findAndCount(options: {
+    where?: any;
+    take?: number;
+    skip?: number;
+  }): Promise<[Player[], number]> {
+    const { rows, count } = await this.playerModel.findAndCountAll({
+      where: options.where,
+      limit: options.take,
+      offset: options.skip,
+    });
+    const players = rows.map((row: any) => this.mapToEntity(row));
+    return [players, count];
+  }
+
   private mapToEntity(model: PlayerModel): Player {
     console.log('Mapping PlayerModel to Player entity:', model);
     if (!model) {

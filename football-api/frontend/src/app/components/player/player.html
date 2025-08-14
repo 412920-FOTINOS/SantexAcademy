@@ -1,15 +1,38 @@
-<!-- src/app/components/player/player.html -->
-<div class="player-container">
-  <h1>Detalles del Jugador</h1>
-  <p>Selecciona un jugador para ver sus detalles.</p>
-<div *ngIf="player; else noPlayer">
-  <h2>{{ player.name }}</h2>
-  <p>Club: {{ player.club }}</p>
-  <p>Posición: {{ player.position }}</p>
-  <p>Nacionalidad: {{ player.nationality }}</p>
-  <p>Rating: {{ player.rating }}</p>
-</div>
+<div class="player-list-container">
+  <form [formGroup]="filterForm" (ngSubmit)="onFilter()">
+    <input formControlName="name" placeholder="Nombre" />
+    <input formControlName="club" placeholder="Club" />
+    <input formControlName="position" placeholder="Posición" />
+    <button type="submit">Filtrar</button>
+    <button type="button" (click)="exportCSV()">Descargar CSV</button>
+  </form>
 
-<ng-template #noPlayer>
-  <p>{{ errorMessage || 'Cargando jugador...' }}</p>
-</ng-template>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Club</th>
+        <th>Posición</th>
+        <th>Nacionalidad</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (player of players; track player.id) {
+        <tr>
+          <td>{{ player.name }}</td>
+          <td>{{ player.club }}</td>
+          <td>{{ player.position }}</td>
+          <td>{{ player.nationality }}</td>
+          <td>{{ player.rating }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="onPageChange(page - 1)" [disabled]="page === 1">Anterior</button>
+    <span>Página {{ page }}</span>
+    <button (click)="onPageChange(page + 1)" [disabled]="players.length < limit">Siguiente</button>
+  </div>
+</div>

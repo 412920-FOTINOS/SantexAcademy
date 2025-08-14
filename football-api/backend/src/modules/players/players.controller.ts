@@ -6,9 +6,11 @@ import {
   NotFoundException,
   Param,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { PlayerDto } from './dto/player.dto';
+
 
 @Controller('api/players')
 export class PlayersController {
@@ -24,7 +26,30 @@ export class PlayersController {
     if (!player) {
       throw new NotFoundException(`Player with ID ${id} not found.`);
     }
-
     return new PlayerDto(player);
   }
+  
+  // Creao
+    @Get()
+  @HttpCode(HttpStatus.OK)
+  async getPlayers(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+    @Query('name') name?: string,
+    @Query('club') club?: string,
+    @Query('position') position?: string,
+    @Query('nationality') nationality?: string,
+    @Query('fifaVersion') fifaVersion?: string,
+  ) {
+    return this.playersService.findAll({
+      page,
+      limit,
+      name,
+      club,
+      position,
+      nationality,
+      fifaVersion,
+    });
+  }
 }
+

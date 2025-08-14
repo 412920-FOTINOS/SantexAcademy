@@ -46,4 +46,19 @@ export class TypeOrmPlayerRepository implements IPlayerRepository {
 
     return player;
   }
+
+  //Creao
+  async findAndCount(options: {
+    where?: any;
+    take?: number;
+    skip?: number;
+  }): Promise<[Player[], number]> {
+    const [dtos, total] = await this.playerRepository.findAndCount({
+      where: options.where,
+      take: options.take,
+      skip: options.skip,
+    });
+    const players = dtos.map((dto) => this.mapToEntity(dto));
+    return [players, total];
+  }
 }

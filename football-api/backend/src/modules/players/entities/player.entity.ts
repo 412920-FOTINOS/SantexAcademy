@@ -9,4 +9,5 @@ export class Player {
   declare shooting: number;
   declare dribbling: number;
   declare passing: number;
+  declare fifaVersion?: string;
 }
