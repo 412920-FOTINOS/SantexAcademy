@@ -33,8 +33,8 @@ export class PlayersController {
     @Get()
   @HttpCode(HttpStatus.OK)
   async getPlayers(
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10,
+    @Query('page') page: string = '1',
+    @Query('limit') limit: string = '10',
     @Query('name') name?: string,
     @Query('club') club?: string,
     @Query('position') position?: string,
@@ -42,8 +42,8 @@ export class PlayersController {
     @Query('fifaVersion') fifaVersion?: string,
   ) {
     return this.playersService.findAll({
-      page,
-      limit,
+      page: Number(page),
+      limit: Number(limit),
       name,
       club,
       position,

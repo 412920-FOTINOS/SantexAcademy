@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IPlayerRepository } from './interfaces/player-repository.interface';
 import { Player } from './entities/player.entity';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class PlayersService {
@@ -25,11 +26,11 @@ export class PlayersService {
   }): Promise<{ data: Player[]; total: number }> {
     // Construye el objeto de filtros para el repositorio
     const where: any = {};
-    if (filters.name) where.longName = filters.name;
-    if (filters.club) where.clubName = filters.club;
-    if (filters.position) where.playerPositions = filters.position;
-    if (filters.nationality) where.nationalityName = filters.nationality;
-    if (filters.fifaVersion) where.fifaVersion = filters.fifaVersion;
+    if (filters.name) where.longName = { [Op.like]: `%${filters.name}%` };
+    if (filters.club) where.clubName = { [Op.like]: `%${filters.club}%` };
+    if (filters.position) where.playerPositions = { [Op.like]: `%${filters.position}%` };
+    if (filters.nationality) where.nationalityName = { [Op.like]: `%${filters.nationality}%` };
+    if (filters.fifaVersion) where.fifaVersion = { [Op.like]: `%${filters.fifaVersion}%` };
 
     // Calcular offset
     const offset = (filters.page - 1) * filters.limit;
