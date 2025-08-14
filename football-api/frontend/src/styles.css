@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --green-main: #43a047;         /* Verde césped más vibrante en fondo oscuro */
+    --green-light: #81c784;        /* Verde claro para acentos */
+    --gray-dark: #181818;          /* Fondo principal oscuro */
+    --gray-light: #23272a;         /* Cards y elementos secundarios */
+    --yellow-accent: #ffd600;      /* Amarillo vibrante para acentos */
+    --white: #f5f5f5;              /* Texto principal, casi blanco */
+    --black: #000;
+}
+body {
+    background: var(--gray-dark);
+    color: var(--white);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;   
+}

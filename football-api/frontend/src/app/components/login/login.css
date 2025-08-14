@@ -3,7 +3,7 @@
     margin: 60px auto;
     padding: 24px;
     border-radius: 8px;
-    background: #f8f8f8;
+    background: var(--gray-light);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
@@ -29,12 +29,17 @@
 .login-container button {
     width: 100%;
     padding: 10px;
-    background: #1976d2;
-    color: #fff;
+    background: var(--green-main);
+    color: var(--white);
     border: none;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-container button:hover {
+    background: var(--green-light);
 }
 
 .login-container .error {
