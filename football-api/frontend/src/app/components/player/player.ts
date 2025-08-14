@@ -23,7 +23,8 @@ export class PlayerComponent {
     this.filterForm = this.fb.group({
       name: [''],
       club: [''],
-      position: ['']
+      position: [''],
+      nationality: ['']
     });
     this.loadPlayers();
   }

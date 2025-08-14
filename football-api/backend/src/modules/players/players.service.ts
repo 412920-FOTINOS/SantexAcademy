@@ -28,7 +28,7 @@ export class PlayersService {
     const where: any = {};
     if (filters.name) where.longName = { [Op.like]: `%${filters.name}%` };
     if (filters.club) where.clubName = { [Op.like]: `%${filters.club}%` };
-    if (filters.position) where.playerPositions = { [Op.like]: `%${filters.position}%` };
+    if (filters.position) where.playerPositions = filters.position;
     if (filters.nationality) where.nationalityName = { [Op.like]: `%${filters.nationality}%` };
     if (filters.fifaVersion) where.fifaVersion = { [Op.like]: `%${filters.fifaVersion}%` };
 

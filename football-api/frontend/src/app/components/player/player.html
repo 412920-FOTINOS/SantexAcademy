@@ -2,7 +2,24 @@
   <form [formGroup]="filterForm" (ngSubmit)="onFilter()">
     <input formControlName="name" placeholder="Nombre" />
     <input formControlName="club" placeholder="Club" />
-    <input formControlName="position" placeholder="Posición" />
+    <select formControlName="position">
+      <option value="">Todas las posiciones</option>
+      <option value="GK">GK</option>
+      <option value="RB">RB</option>
+      <option value="LB">LB</option>
+      <option value="CB">CB</option>
+      <option value="CDM">CDM</option>
+      <option value="CM">CM</option>
+      <option value="CAM">CAM</option>
+      <option value="RM">RM</option>
+      <option value="LM">LM</option>
+      <option value="RW">RW</option>
+      <option value="LW">LW</option>
+      <option value="CF">CF</option>
+      <option value="ST">ST</option>
+      <option value="RWB">RWB</option>
+      <option value="LWB">LWB</option>
+    </select>
     <button type="submit">Filtrar</button>
     <button type="button" (click)="exportCSV()">Descargar CSV</button>
   </form>

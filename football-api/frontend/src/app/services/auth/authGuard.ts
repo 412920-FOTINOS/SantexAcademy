@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { AuthService } from './auth';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = () => {
     const token = localStorage.getItem('token');
-    return !!token; // Solo permite acceso si hay token
+    if (token) return true;
+    const router = inject(Router);
+    router.navigate(['/login']);
+    return false;
 };
