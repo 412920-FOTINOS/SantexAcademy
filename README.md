@@ -40,34 +40,50 @@ Podés probar todos los endpoints, ver los parámetros y las respuestas desde el
    - Ver los modelos y parámetros requeridos
    - Consultar ejemplos de respuesta y error
 
+
+#### Ejemplos para testear endpoints
+1. GET /api/players/:id
+```
+1
+```
+2. PATCH /api/players/:id //CHECKEAR
+```
+{
+  "name": "Juan Pérez",
+  "club": "River Plate"
+}
+```
+3. POST /api/players
+```
+{
+  "name": "Juan Pérez",
+  "club": "River Plate",
+  "position": "CM",
+  "nationality": "Argentina",
+  "rating": 85,
+  "speed": 80,
+  "shooting": 75,
+  "dribbling": 78,
+  "passing": 82
+}
+```
+4. GET /api/players
+```
+fifaVersion: 16
+nationality: Argentina
+position: RW
+club: FC Barcelona
+name: Lionel
+limit: 10
+page: 1
+```
+
+
 **Tip:**  
 Si agregás nuevos endpoints, Swagger se actualiza automáticamente al reiniciar el backend.
+
 
 ---
-
-¿Querés que te ayude a agregar ejemplos de uso de endpoints en el README?### Documentación de la API con Swagger
-
-La API está documentada y disponible mediante Swagger.  
-Podés probar todos los endpoints, ver los parámetros y las respuestas desde el navegador.
-
-**Pasos para acceder:**
-
-1. Asegurate de tener la aplicación corriendo con Docker o manualmente.
-2. Abrí tu navegador y accedé a:
-
-   ```
-   http://localhost:3000/api/docs
-   ```
-
-3. Desde ahí podés:
-   - Probar los endpoints (GET, POST, PATCH, etc.)
-   - Ver los modelos y parámetros requeridos
-   - Consultar ejemplos de respuesta y error
-
-**Tip:**  
-Si agregás nuevos endpoints, Swagger se actualiza automáticamente al reiniciar el backend.
-
-
 
 
 ## Alternativa

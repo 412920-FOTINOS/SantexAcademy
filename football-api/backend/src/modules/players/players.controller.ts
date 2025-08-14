@@ -9,14 +9,15 @@ import {
   Query,
   Patch,
   Body,
-  Post
+  Post,
+  ValidationPipe
 } from '@nestjs/common';
+import { ApiQuery } from '@nestjs/swagger';
 import { PlayersService } from './players.service';
 import { PlayerDto } from './dto/player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
 import { CreatePlayerDto } from './dto/create-player.dto';
-
-
+import { GetPlayersFilterDto } from './dto/get-players-filter.dto';
 
 @Controller('api/players')
 export class PlayersController {
@@ -44,33 +45,25 @@ export class PlayersController {
     return this.playersService.updatePlayer(id, updatePlayerDto);
   }
 
-@Post()
-@HttpCode(HttpStatus.CREATED)
-async createPlayer(@Body() createPlayerDto: CreatePlayerDto): Promise<PlayerDto> {
-  const player = await this.playersService.createPlayer(createPlayerDto);
-  return new PlayerDto(player); 
-}
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  async createPlayer(@Body() createPlayerDto: CreatePlayerDto): Promise<PlayerDto> {
+    const player = await this.playersService.createPlayer(createPlayerDto);
+    return new PlayerDto(player); 
+  }
 
   @Get()
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiQuery({ name: 'name', required: false, type: String })
+  @ApiQuery({ name: 'club', required: false, type: String })
+  @ApiQuery({ name: 'position', required: false, type: String })
+  @ApiQuery({ name: 'nationality', required: false, type: String })
+  @ApiQuery({ name: 'fifaVersion', required: false, type: String })
   @HttpCode(HttpStatus.OK)
   async getPlayers(
-    @Query('page') page: string = '1',
-    @Query('limit') limit: string = '10',
-    @Query('name') name?: string,
-    @Query('club') club?: string,
-    @Query('position') position?: string,
-    @Query('nationality') nationality?: string,
-    @Query('fifaVersion') fifaVersion?: string,
+    @Query(new ValidationPipe({ transform: true })) filters: GetPlayersFilterDto
   ) {
-    return this.playersService.findAll({
-      page: Number(page),
-      limit: Number(limit),
-      name,
-      club,
-      position,
-      nationality,
-      fifaVersion,
-    });
+    return this.playersService.findAll(filters);
   }
 }
-

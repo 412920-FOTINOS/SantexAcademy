@@ -19,12 +19,22 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     return playerList.map((x) => this.mapToEntity(x));
   }
 
-  async update(id: number, updatePlayerDto: UpdatePlayerDto): Promise<Player | undefined> {
-    const player = await PlayerModel.findByPk(id);
-    if (!player) return undefined;
-    await player.update(updatePlayerDto);
-    return this.mapToEntity(player);
-  }
+async update(id: number, updatePlayerDto: UpdatePlayerDto): Promise<Player | undefined> {
+  const player = await this.playerModel.findByPk(id);
+  if (!player) return undefined;
+  await player.update({
+    longName: updatePlayerDto.name,
+    clubName: updatePlayerDto.club,
+    playerPositions: updatePlayerDto.position,
+    nationalityName: updatePlayerDto.nationality,
+    overall: updatePlayerDto.rating,
+    pace: updatePlayerDto.speed,
+    shooting: updatePlayerDto.shooting,
+    dribbling: updatePlayerDto.dribbling,
+    passing: updatePlayerDto.passing,
+  });
+  return this.mapToEntity(player);
+}
 
 async create(createPlayerDto: CreatePlayerDto): Promise<Player> {
   const model = await this.playerModel.create({
