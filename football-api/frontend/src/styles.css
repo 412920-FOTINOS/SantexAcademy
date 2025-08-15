@@ -1,16 +1,46 @@
 :root {
-    --green-main: #43a047;         /* Verde césped más vibrante en fondo oscuro */
-    --green-light: #81c784;        /* Verde claro para acentos */
-    --gray-dark: #181818;          /* Fondo principal oscuro */
-    --gray-light: #23272a;         /* Cards y elementos secundarios */
-    --yellow-accent: #ffd600;      /* Amarillo vibrante para acentos */
-    --white: #f5f5f5;              /* Texto principal, casi blanco */
-    --black: #000;
+    --fifa-navy: #08111D;
+    --fifa-gold: #EAC658;
+    --fifa-gold-2: #f2cc5b44;
+    --fifa-gold-3: #D8B859;
+    --fifa-blue-accent: #39ABD7;
+    --fifa-blue-accessible: #23779C;
+    --fifa-gray-100: #26272A;
+    --fifa-gray-200: #191B1C;
+    --fifa-white: #FDFDFD;
 }
 body {
-    background: var(--gray-dark);
-    color: var(--white);
+    background: var(--fifa-navy);
+    color: var(--fifa-white);
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;   
+    padding: 0;
+    
+}
+
+@font-face {
+    font-family: 'ClearGothicBold';
+    src: url('/Cleargothic-Bold Regular.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+header {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 2em 0 2em;
+    background: var(--fifa-navy);
+    min-height: 8vh;
+}
+
+.app-logo {
+    height: 3rem;
+    width: auto;
+    margin-right: 1.2rem;
+}
+
+header h1 {
+    font-family: 'ClearGothicBold', Arial, sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.12em;
+    color: var(--fifa-gold);
 }

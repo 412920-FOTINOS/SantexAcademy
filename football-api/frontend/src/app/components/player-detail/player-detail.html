@@ -1,0 +1,14 @@
+<button class="back-btn" (click)="volverAlListado()">← Volver al listado</button>
+<div class="player-detail-container" *ngIf="player">
+    <h2>{{ player.name }}</h2>
+    <p><strong>Club:</strong> {{ player.club }}</p>
+    <p><strong>Posición:</strong> {{ player.position }}</p>
+    <p><strong>Nacionalidad:</strong> {{ player.nationality }}</p>
+    <p><strong>Calificación:</strong> {{ player.rating }}</p>
+    <p><strong>Velocidad:</strong> {{ player.speed }}</p>
+    <p><strong>Remate:</strong> {{ player.shooting }}</p>
+    <p><strong>Dribbling:</strong> {{ player.dribbling }}</p>
+    <p><strong>Pase:</strong> {{ player.passing }}</p>
+    <p><strong>Versión FIFA:</strong> {{ player.fifaVersion }}</p>
+    <!-- Aquí irá el gráfico de skills -->
+</div>

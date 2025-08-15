@@ -34,6 +34,7 @@ async create(createPlayerDto: CreatePlayerDto): Promise<Player> {
     shooting: createPlayerDto.shooting ?? 0,
     dribbling: createPlayerDto.dribbling ?? 0,
     passing: createPlayerDto.passing ?? 0,
+    fifaVersion: createPlayerDto.fifaVersion ?? 'Unknown Version',
   };
   this.players.push(player);
   return player;

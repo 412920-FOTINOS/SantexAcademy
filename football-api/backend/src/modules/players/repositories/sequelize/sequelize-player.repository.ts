@@ -91,7 +91,7 @@ private mapToEntity(model: PlayerModel): Player {
   player.shooting = data.shooting ?? null;
   player.dribbling = data.dribbling ?? null;
   player.passing = data.passing ?? null;
-  console.log('Valores en dataValues:', data.pace, data.shooting, data.dribbling, data.passing);
+  player.fifaVersion = data.fifaVersion || 'Unknown Version';
   return player;
 }
 }

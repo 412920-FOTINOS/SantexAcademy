@@ -1,0 +1,60 @@
+.player-create-container {
+    max-width: 350px;
+    margin: 8vh auto;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background: var(--fifa-gray-200);
+    box-shadow: 0 2px 8px rgba(8,17,29,0.12);
+    color: var(--fifa-navy);
+}
+.player-create-container h2 {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: var(--fifa-gold);
+    font-family: 'ClearGothicBold', Arial, sans-serif;
+}
+.player-create-container label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    color: var(--fifa-navy);
+}
+.player-create-container input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--fifa-gold-2);
+    border-radius: 0.25rem;
+    background: var(--fifa-gray-100);
+    color: var(--fifa-navy);
+}
+.player-create-container button {
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--fifa-blue-accessible);
+    color: var(--fifa-white);
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.player-create-container button:disabled {
+    background: #A3C2D4;
+    color: var(--fifa-navy);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+.player-create-container button:hover:not(:disabled) {
+    background: var(--fifa-blue-accent);
+}
+.success {
+    color: #4CAF50;
+    margin-top: 0.7rem;
+    text-align: center;
+}
+.error {
+    color: #d32f2f;
+    margin-top: 0.7rem;
+    text-align: center;
+}

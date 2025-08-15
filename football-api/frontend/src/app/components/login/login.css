@@ -1,49 +1,57 @@
 .login-container {
     max-width: 350px;
-    margin: 60px auto;
-    padding: 24px;
-    border-radius: 8px;
-    background: var(--gray-light);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin: 8vh auto;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background: var(--fifa-gray-200);
+    box-shadow: 0 2px 8px rgba(8,17,29,0.12);
 }
-
 .login-container h2 {
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 1.2rem;
+    color: var(--fifa-gold);
+    font-family: 'ClearGothicBold', Arial, sans-serif;
 }
-
 .login-container label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 0.4rem;
     font-weight: 500;
+    color: var(--fifa-white);
 }
-
 .login-container input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--fifa-gold-2);
+    border-radius: 0.25rem;
+    background: var(--fifa-white);
+    color: var(--fifa-navy);
 }
-
 .login-container button {
     width: 100%;
-    padding: 10px;
-    background: var(--green-main);
-    color: var(--white);
+    padding: 0.7rem;
+    background: var(--fifa-blue-accessible);
+    color: var(--fifa-white);
     border: none;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
 }
-
 .login-container button:hover {
-    background: var(--green-light);
+    background: var(--fifa-blue-accent);
 }
-
 .login-container .error {
     color: #d32f2f;
-    margin-top: 10px;
+    margin-top: 0.7rem;
+    text-align: center;
+}
+.login-container .register-link a {
+    color: var(--fifa-blue-accessible);
+    text-decoration: underline;
+    font-size: 0.95rem;
+}
+.register-link {
+    margin-top: 1rem;
     text-align: center;
 }

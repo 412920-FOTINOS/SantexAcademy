@@ -16,6 +16,9 @@ const sequelizeConfig: SequelizeModuleOptions = {
   autoLoadModels: true,
   synchronize: true,
   logging: false, // set to true for verbose SQL logs
+    dialectOptions: {
+    charset: 'utf8mb4',
+  },
 };
 
 export default sequelizeConfig;

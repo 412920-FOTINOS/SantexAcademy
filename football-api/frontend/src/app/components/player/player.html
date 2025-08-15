@@ -1,7 +1,9 @@
+<button class="create-btn" (click)="irACrearJugador()">Crear jugador</button>
+
 <div class="player-list-container">
   <form [formGroup]="filterForm" (ngSubmit)="onFilter()">
-    <input formControlName="name" placeholder="Nombre" />
-    <input formControlName="club" placeholder="Club" />
+    <input formControlName="name" placeholder="Nombre..." />
+    <input formControlName="club" placeholder="Club..." />
     <select formControlName="position">
       <option value="">Todas las posiciones</option>
       <option value="GK">GK</option>
@@ -21,7 +23,7 @@
       <option value="LWB">LWB</option>
     </select>
     <button type="submit">Filtrar</button>
-    <button type="button" (click)="exportCSV()">Descargar CSV</button>
+    <button id="export-csv" type="button" (click)="exportCSV()">Descargar CSV</button>
   </form>
 
   <table>
@@ -32,6 +34,7 @@
         <th>Posición</th>
         <th>Nacionalidad</th>
         <th>Rating</th>
+        <th>Detalle</th>
       </tr>
     </thead>
     <tbody>
@@ -42,6 +45,9 @@
           <td>{{ player.position }}</td>
           <td>{{ player.nationality }}</td>
           <td>{{ player.rating }}</td>
+          <td>
+            <button (click)="verDetalle(player.id)" title="Ver en detalle">🔍</button>
+          </td>
         </tr>
       }
     </tbody>

@@ -4,6 +4,7 @@ import { PlayerService, Player } from '../../services/player/player';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player',
@@ -19,7 +20,11 @@ export class PlayerComponent {
   limit = 10;
   filterForm: FormGroup;
 
-  constructor(private playerService: PlayerService, private fb: FormBuilder) {
+  constructor(
+    private playerService: PlayerService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.filterForm = this.fb.group({
       name: [''],
       club: [''],
@@ -54,5 +59,13 @@ export class PlayerComponent {
     const csvData = XLSX.write(workbook, { bookType: 'csv', type: 'array' });
     const blob = new Blob([csvData], { type: 'text/csv' });
     saveAs(blob, 'jugadores.csv');
+  }
+
+  verDetalle(id: number) {
+    this.router.navigate(['/player', id]);
+  }
+
+  irACrearJugador() {
+    this.router.navigate(['/create-player']);
   }
 }

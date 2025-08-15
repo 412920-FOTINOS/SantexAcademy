@@ -41,4 +41,8 @@ export class CreatePlayerDto {
     @Min(0)
     @Max(99)
     passing?: number;
+
+    @IsOptional()
+    @IsString()
+    fifaVersion?: string;
 }

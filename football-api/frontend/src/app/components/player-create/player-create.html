@@ -1,0 +1,38 @@
+<div class="player-create-container">
+    <h2>Crear nuevo jugador</h2>
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <label>Nombre</label>
+        <input formControlName="name" type="text" required />
+
+        <label>Club</label>
+        <input formControlName="club" type="text" required />
+
+        <label>Posición</label>
+        <input formControlName="position" type="text" required />
+
+        <label>Nacionalidad</label>
+        <input formControlName="nationality" type="text" required />
+
+        <label>Calificación</label>
+        <input formControlName="rating" type="number" min="1" max="99" required />
+
+        <label>Velocidad</label>
+        <input formControlName="speed" type="number" min="0" max="99" />
+
+        <label>Remate</label>
+        <input formControlName="shooting" type="number" min="0" max="99" />
+
+        <label>Dribbling</label>
+        <input formControlName="dribbling" type="number" min="0" max="99" />
+
+        <label>Pase</label>
+        <input formControlName="passing" type="number" min="0" max="99" />
+
+        <label>Versión FIFA</label>
+        <input formControlName="fifaVersion" type="text" />
+
+        <button type="submit" [disabled]="createForm.invalid">Crear jugador</button>
+    </form>
+  <div *ngIf="success" class="success">¡Jugador creado con éxito!</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>

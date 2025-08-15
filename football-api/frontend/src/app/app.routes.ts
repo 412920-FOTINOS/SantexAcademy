@@ -2,6 +2,9 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login';
 import { PlayerComponent } from './components/player/player';
 import { RegisterComponent } from './components/register/register'; 
+import { PlayerDetailComponent } from './components/player-detail/player-detail';
+import { PlayerCreateComponent } from './components/player-create/player-create';
+
 import { authGuard } from './services/auth/authGuard';
 
 export const routes: Routes = [
@@ -9,5 +12,9 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent }, 
     { path: 'players', component: PlayerComponent, canActivate: [authGuard] },
     { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: '**', redirectTo: 'login' }
+    { path: 'player/:id', component: PlayerDetailComponent, canActivate: [authGuard] },
+    { path: 'create-player', component: PlayerCreateComponent },
+    
+    
+    { path: '**', redirectTo: 'login' },
 ];

@@ -13,6 +13,7 @@ export interface Player {
   shooting: number;
   dribbling: number;
   passing: number;
+  fifaVersion?: string;
 }
 
 @Injectable({
@@ -27,8 +28,16 @@ export class PlayerService {
     return this.http.get<Player>(`${this.baseUrl}/${id}`);
   }
 
+  getPlayerById(id: number | string): Observable<Player> {
+    return this.http.get<Player>(`${this.baseUrl}/${id}`);
+}
+
   getPlayers(params: any): Observable<{ data: Player[]; total: number }> {
     const query = new URLSearchParams(params).toString();
     return this.http.get<{ data: Player[]; total: number }>(`${this.baseUrl}?${query}`);
+  }
+
+    createPlayer(playerData: Partial<Player>): Observable<Player> {
+    return this.http.post<Player>(this.baseUrl, playerData);
   }
 }
