@@ -1,5 +1,6 @@
 <button class="back-btn" (click)="volverAlListado()">← Volver al listado</button>
-<div class="player-detail-container" *ngIf="player">
+
+<div class="player-detail-container" *ngIf="player && !editMode">
     <h2>{{ player.name }}</h2>
     <p><strong>Club:</strong> {{ player.club }}</p>
     <p><strong>Posición:</strong> {{ player.position }}</p>
@@ -10,5 +11,42 @@
     <p><strong>Dribbling:</strong> {{ player.dribbling }}</p>
     <p><strong>Pase:</strong> {{ player.passing }}</p>
     <p><strong>Versión FIFA:</strong> {{ player.fifaVersion }}</p>
-    <!-- Aquí irá el gráfico de skills -->
+    <button (click)="activarEdicion()">Editar</button>
+</div>
+
+<div class="player-detail-container" *ngIf="editMode">
+    <form [formGroup]="editForm" (ngSubmit)="guardarCambios()">
+        <label>Nombre</label>
+        <input formControlName="name" type="text" required />
+
+        <label>Club</label>
+        <input formControlName="club" type="text" required />
+
+        <label>Posición</label>
+        <input formControlName="position" type="text" required />
+
+        <label>Nacionalidad</label>
+        <input formControlName="nationality" type="text" required />
+
+        <label>Calificación</label>
+        <input formControlName="rating" type="number" min="1" max="99" required />
+
+        <label>Velocidad</label>
+        <input formControlName="speed" type="number" min="0" max="99" />
+
+        <label>Remate</label>
+        <input formControlName="shooting" type="number" min="0" max="99" />
+
+        <label>Dribbling</label>
+        <input formControlName="dribbling" type="number" min="0" max="99" />
+
+        <label>Pase</label>
+        <input formControlName="passing" type="number" min="0" max="99" />
+
+        <label>Versión FIFA</label>
+        <input formControlName="fifaVersion" type="text" />
+
+        <button type="submit" [disabled]="editForm.invalid">Aplicar</button>
+        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+    </form>
 </div>

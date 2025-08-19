@@ -37,7 +37,11 @@ export class PlayerService {
     return this.http.get<{ data: Player[]; total: number }>(`${this.baseUrl}?${query}`);
   }
 
-    createPlayer(playerData: Partial<Player>): Observable<Player> {
+  createPlayer(playerData: Partial<Player>): Observable<Player> {
     return this.http.post<Player>(this.baseUrl, playerData);
+  }
+  
+  updatePlayer(id: number, playerData: Partial<Player>): Observable<Player> {
+    return this.http.patch<Player>(`${this.baseUrl}/${id}`, playerData);
   }
 }

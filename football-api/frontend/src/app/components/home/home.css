@@ -1,0 +1,39 @@
+.home-container {
+    max-width: 400px;
+    margin: 8vh auto;
+    padding: 2rem;
+    border-radius: 0.7rem;
+    background: var(--fifa-gray-200);
+    box-shadow: 0 2px 8px rgba(8,17,29,0.12);
+    color: var(--fifa-navy);
+    text-align: center;
+}
+.home-container h1 {
+    color: var(--fifa-gold);
+    font-family: 'ClearGothicBold', Arial, sans-serif;
+    margin-bottom: 1rem;
+}
+.home-container p {
+    margin-bottom: 1.5rem;
+    color: var(--fifa-white);
+    font-size: 1.1rem;
+}
+.home-actions {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.home-actions button {
+    padding: 0.7em 1.4em;
+    background: var(--fifa-blue-accessible);
+    color: var(--fifa-white);
+    border: none;
+    border-radius: 0.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.home-actions button:hover {
+    background: var(--fifa-blue-accent);
+}
