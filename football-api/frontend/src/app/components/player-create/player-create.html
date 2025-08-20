@@ -8,7 +8,24 @@
         <input formControlName="club" type="text" required />
 
         <label>Posición</label>
-        <input formControlName="position" type="text" required />
+        <select formControlName="position" required>
+          <option value="">Seleccionar posición</option>
+          <option value="GK">GK</option>
+          <option value="RB">RB</option>
+          <option value="LB">LB</option>
+          <option value="CB">CB</option>
+          <option value="CDM">CDM</option>
+          <option value="CM">CM</option>
+          <option value="CAM">CAM</option>
+          <option value="RM">RM</option>
+          <option value="LM">LM</option>
+          <option value="RW">RW</option>
+          <option value="LW">LW</option>
+          <option value="CF">CF</option>
+          <option value="ST">ST</option>
+          <option value="RWB">RWB</option>
+          <option value="LWB">LWB</option>
+        </select>
 
         <label>Nacionalidad</label>
         <input formControlName="nationality" type="text" required />
