@@ -1,31 +1,96 @@
-.player-detail-container {
-    max-width: 400px;
+/* Main div */
+.player-detail-wide {
+    max-width: 900px;
     margin: 6vh auto;
-    padding: 2rem;
+    padding: 0.8rem 2rem 2rem 2rem;
     border-radius: 0.7rem;
     background: var(--fifa-gray-200);
     box-shadow: 0 2px 8px rgba(8,17,29,0.12);
     color: var(--fifa-white);
     font-family: Arial, sans-serif;
+    transition: box-shadow 0.2s, background 0.2s;
 }
 
-.player-detail-container h2 {
+/* Tabs */
+.tab-switch {
+    display: flex;
+    margin-top: 0;
+    padding-top: 0;
+    gap: 0.5em;
+    margin-bottom: 1em;
+    align-items: end; 
+    height: auto;
+}
+.tab-switch button {
+    background: var(--fifa-gray-100);
+    color: var(--fifa-navy);
+    border: none;
+    border-radius: 0.3em 0.3em 0 0;
+    padding: 0.6em 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.tab-switch button.active {
+    background: var(--fifa-gold);
+    color: var(--fifa-navy);
+    box-shadow: 0 -2px 8px rgba(8,17,29,0.12);
+}
+/* Btn Volver */
+.tab-switch .back-btn {
+    margin-right: auto;
+    background: var(--fifa-gold);
+    color: var(--fifa-navy);
+}
+
+/* Detalle */
+.detail-content {
+    display: flex;
+    gap: 2.5rem;
+}
+.detail-fields {
+    flex: 2;
+}
+.detail-fields h2 {
     color: var(--fifa-gold);
     font-family: 'ClearGothicBold', Arial, sans-serif;
     margin-bottom: 1rem;
     letter-spacing: 0.08em;
     font-size: 2rem;
 }
-
-.player-detail-container p {
+.detail-fields p {
     margin: 0.5em 0;
     color: var(--fifa-white);
     font-size: 1.1em;
     border-bottom: 1px solid var(--fifa-gold-3);
     padding-bottom: 0.3em;
 }
+.detail-graphic {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+    min-height: 220px;
+    background: var(--fifa-gray-100);
+    border-radius: 0.5em;
+    box-shadow: 0 2px 8px rgba(8,17,29,0.08);
+}
 
-.player-detail-container label {
+/* Formulario */
+.edit-form-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.5rem;
+    align-items: start;
+}
+.edit-form-columns > div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inputs, selects y labels */
+.player-detail-wide label {
     display: block;
     margin-top: 1em;
     margin-bottom: 0.3em;
@@ -33,19 +98,45 @@
     color: var(--fifa-gold);
     letter-spacing: 0.04em;
 }
-
-.player-detail-container input {
+.player-detail-wide input,
+.player-detail-wide select {
     width: 100%;
     padding: 0.5em;
     margin-bottom: 0.8em;
     border: 1px solid var(--fifa-gold-2);
     border-radius: 0.25em;
     background: var(--fifa-gray-100);
-    color: var(--fifa-navy);
+    color: white;
     font-size: 1em;
 }
 
-.player-detail-container button {
+/* Botones edición */
+.edit-form-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: space-between;
+    margin-top: 1.2em;
+}
+.edit-form-actions button {
+    width: 45%;
+    height: 2.8em;
+    background-color: var(--fifa-gold);
+    color: var(--fifa-navy);
+    border: none;
+    border-radius: 0.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 1em;
+}
+.edit-form-actions button:hover {
+    background: var(--fifa-blue-accent);
+    color: var(--fifa-white);
+}
+
+/* Botones generales */
+.player-detail-wide button {
     margin-top: 1em;
     margin-right: 0.7em;
     padding: 0.6em 1.3em;
@@ -58,39 +149,37 @@
     transition: background-color 0.2s;
     font-size: 1em;
 }
-
-.player-detail-container button:hover {
+.player-detail-wide button:hover {
     background: var(--fifa-blue-accent);
 }
 
-.back-btn {
-    margin-bottom: 1em;
-    padding: 0.5em 1.2em;
-    background: var(--fifa-gold);
-    color: var(--fifa-navy);
-    border: none;
-    border-radius: 0.3em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 1em;
-}
-
-.back-btn:hover {
-    background: var(--fifa-gold-2);
-    color: var(--fifa-navy);
-}
-
-.player-detail-container form {
-    margin-top: 1em;
-}
-
-@media (max-width: 600px) {
-    .player-detail-container {
+/* Responsividad */
+@media (max-width: 900px) {
+    .player-detail-wide {
         max-width: 98vw;
         padding: 1em;
     }
-    .player-detail-container h2 {
+    .detail-content {
+        flex-direction: column;
+        gap: 1em;
+    }
+    .detail-graphic {
+        min-width: 100%;
+        min-height: 180px;
+        margin-top: 1em;
+    }
+    .edit-form-columns {
+        grid-template-columns: 1fr;
+    }
+    .edit-form-actions {
+        justify-content: center;
+    }
+    .edit-form-actions button {
+        width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    .player-detail-wide h2 {
         font-size: 1.3rem;
     }
 }

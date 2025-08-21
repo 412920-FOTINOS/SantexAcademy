@@ -1,55 +1,67 @@
 <div class="player-create-container">
     <h2>Crear nuevo jugador</h2>
-    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-        <label>Nombre</label>
-        <input formControlName="name" type="text" required />
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="edit-form-grid">
+        <div class="edit-form-columns">
+            <div>
+                <label>Nombre</label>
+                <input formControlName="name" type="text" required />
 
-        <label>Club</label>
-        <input formControlName="club" type="text" required />
+                <label>Club</label>
+                <input formControlName="club" type="text" required />
 
-        <label>Posición</label>
-        <select formControlName="position" required>
-          <option value="">Seleccionar posición</option>
-          <option value="GK">GK</option>
-          <option value="RB">RB</option>
-          <option value="LB">LB</option>
-          <option value="CB">CB</option>
-          <option value="CDM">CDM</option>
-          <option value="CM">CM</option>
-          <option value="CAM">CAM</option>
-          <option value="RM">RM</option>
-          <option value="LM">LM</option>
-          <option value="RW">RW</option>
-          <option value="LW">LW</option>
-          <option value="CF">CF</option>
-          <option value="ST">ST</option>
-          <option value="RWB">RWB</option>
-          <option value="LWB">LWB</option>
-        </select>
+                <label>Posición</label>
+                <select formControlName="position" required>
+                    <option value="">Seleccionar posición</option>
+                    <option value="GK">GK</option>
+                    <option value="RB">RB</option>
+                    <option value="LB">LB</option>
+                    <option value="CB">CB</option>
+                    <option value="CDM">CDM</option>
+                    <option value="CM">CM</option>
+                    <option value="CAM">CAM</option>
+                    <option value="RM">RM</option>
+                    <option value="LM">LM</option>
+                    <option value="RW">RW</option>
+                    <option value="LW">LW</option>
+                    <option value="CF">CF</option>
+                    <option value="ST">ST</option>
+                    <option value="RWB">RWB</option>
+                    <option value="LWB">LWB</option>
+                </select>
 
-        <label>Nacionalidad</label>
-        <input formControlName="nationality" type="text" required />
+                <label>Nacionalidad</label>
+                <input formControlName="nationality" type="text" required />
 
-        <label>Calificación</label>
-        <input formControlName="rating" type="number" min="1" max="99" required />
+                <label>Calificación</label>
+                <input formControlName="rating" type="number" min="1" max="99" required />
+            </div>
+            <div class="column-space"></div>
+            <div>
+                <label>Velocidad</label>
+                <input formControlName="speed" type="number" min="0" max="99" />
 
-        <label>Velocidad</label>
-        <input formControlName="speed" type="number" min="0" max="99" />
+                <label>Remate</label>
+                <input formControlName="shooting" type="number" min="0" max="99" />
 
-        <label>Remate</label>
-        <input formControlName="shooting" type="number" min="0" max="99" />
+                <label>Dribbling</label>
+                <input formControlName="dribbling" type="number" min="0" max="99" />
 
-        <label>Dribbling</label>
-        <input formControlName="dribbling" type="number" min="0" max="99" />
+                <label>Pase</label>
+                <input formControlName="passing" type="number" min="0" max="99" />
 
-        <label>Pase</label>
-        <input formControlName="passing" type="number" min="0" max="99" />
-
-        <label>Versión FIFA</label>
-        <input formControlName="fifaVersion" type="text" />
-
-        <button type="submit" [disabled]="createForm.invalid">Crear jugador</button>
+                <label>Versión FIFA</label>
+                <input formControlName="fifaVersion" type="text" />
+            </div>
+        </div>
+        <div class="edit-form-actions">
+            <button type="submit" [disabled]="createForm.invalid">Crear jugador</button>
+            <button type="button" (click)="createForm.reset()">Limpiar</button>
+        </div>
     </form>
-  <div *ngIf="success" class="success">¡Jugador creado con éxito!</div>
-  <div *ngIf="error" class="error">{{ error }}</div>
+    @if (success) {
+        <div class="success">¡Jugador creado con éxito!</div>
+    }
+    @if (error) {
+        <div class="error">{{ error }}</div>
+    }
 </div>

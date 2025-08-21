@@ -36,6 +36,11 @@ header {
     padding: 0.5em 2em 0 2em;
     min-height: 8vh;
 }
+header a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
 
 .app-logo {
     height: 3rem;

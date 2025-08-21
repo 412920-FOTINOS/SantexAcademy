@@ -1,5 +1,3 @@
-<button class="create-btn" (click)="irACrearJugador()">Crear jugador</button>
-
 <div class="player-list-container">
   <form [formGroup]="filterForm" (ngSubmit)="onFilter()">
     <input formControlName="name" placeholder="Nombre..." />
@@ -23,7 +21,10 @@
       <option value="LWB">LWB</option>
     </select>
     <button type="submit">Filtrar</button>
-    <button id="export-csv" type="button" (click)="exportCSV()">Descargar CSV</button>
+    <div class="form-btns">
+      <button class="create-btn" (click)="irACrearJugador()">Crear jugador</button>
+      <button id="export-csv" type="button" (click)="exportCSV()">Descargar CSV</button>
+    </div>
   </form>
 
   <table>

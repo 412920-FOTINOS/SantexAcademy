@@ -10,15 +10,19 @@
 
 .player-list-container form {
     display: flex;
+    flex-wrap: wrap;
     gap: 1.2rem;
     margin-bottom: 1.2rem;
     align-items: center;
 }
 
-.player-list-container #export-csv {
+.player-list-container form .form-btns {
+    display: flex;
     margin-left: auto;
-    margin-right: 0.8rem;
+    justify-content: flex-end;
+    gap: 0.8em;
 }
+
 select {
     padding: 0.7em;
     border: 1px solid var(--fifa-gold-2);
@@ -54,7 +58,7 @@ select {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     background: var(--fifa-gray-200);
     border-radius: 0.7rem;
     overflow: hidden;
@@ -96,9 +100,6 @@ select {
     background: var(--fifa-gold-2);
     color: var(--fifa-navy);
 }
-/* .player-list-container tr:hover td {
-    color: var(--fifa-navy);
-} */
 
 .player-list-container th:first-child,
 .player-list-container td:first-child {
@@ -147,18 +148,6 @@ select {
 .player-list-container select::placeholder {
     color: var(--fifa-white);
 }
-
-.create-btn {
-    margin-bottom: 1em;
-    padding: 0.7em 1.4em;
-    background: var(--fifa-gold);
-    color: var(--fifa-navy);
-    border: none;
-    border-radius: 0.3em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.create-btn:hover {
-    background: var(--fifa-gold-2);
+.player-list-container form button {
+    display: inline-block;
 }

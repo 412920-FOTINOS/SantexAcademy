@@ -1,52 +1,88 @@
-<button class="back-btn" (click)="volverAlListado()">← Volver al listado</button>
+<div class="player-detail-wide">
+    <div class="tab-switch">
+        <button class="back-btn" (click)="volverAlListado()">← Volver al listado</button>
+        <button [class.active]="!editMode" (click)="editMode = false">Detalle</button>
+        <button [class.active]="editMode" (click)="editMode = true">Editar</button>
+    </div>
 
-<div class="player-detail-container" *ngIf="player && !editMode">
-    <h2>{{ player.name }}</h2>
-    <p><strong>Club:</strong> {{ player.club }}</p>
-    <p><strong>Posición:</strong> {{ player.position }}</p>
-    <p><strong>Nacionalidad:</strong> {{ player.nationality }}</p>
-    <p><strong>Calificación:</strong> {{ player.rating }}</p>
-    <p><strong>Velocidad:</strong> {{ player.speed }}</p>
-    <p><strong>Remate:</strong> {{ player.shooting }}</p>
-    <p><strong>Dribbling:</strong> {{ player.dribbling }}</p>
-    <p><strong>Pase:</strong> {{ player.passing }}</p>
-    <p><strong>Versión FIFA:</strong> {{ player.fifaVersion }}</p>
-    <button (click)="activarEdicion()">Editar</button>
-</div>
+    @if (!editMode) {
+        <div class="detail-content">
+            <div class="detail-fields">
+                <h2>{{ player?.name }}</h2>
+                <p><strong>Club:</strong> {{ player?.club }}</p>
+                <p><strong>Posición:</strong> {{ player?.position }}</p>
+                <p><strong>Nacionalidad:</strong> {{ player?.nationality }}</p>
+                <p><strong>Calificación:</strong> {{ player?.rating }}</p>
+                <p><strong>Velocidad:</strong> {{ player?.speed }}</p>
+                <p><strong>Remate:</strong> {{ player?.shooting }}</p>
+                <p><strong>Dribbling:</strong> {{ player?.dribbling }}</p>
+                <p><strong>Pase:</strong> {{ player?.passing }}</p>
+                <p><strong>Versión FIFA:</strong> {{ player?.fifaVersion }}</p>
+            </div>
+            <div class="detail-graphic">
+                <!-- Aquí irá el gráfico de skills -->
+            </div>
+        </div>
+    }
 
-<div class="player-detail-container" *ngIf="editMode">
-    <form [formGroup]="editForm" (ngSubmit)="guardarCambios()">
-        <label>Nombre</label>
-        <input formControlName="name" type="text" required />
+    @if (editMode) {
+        <form [formGroup]="editForm" (ngSubmit)="guardarCambios()" class="edit-form-grid">
+            <div class="edit-form-columns">
+                <div>
+                    <label>Nombre</label>
+                    <input formControlName="name" type="text" required />
 
-        <label>Club</label>
-        <input formControlName="club" type="text" required />
+                    <label>Club</label>
+                    <input formControlName="club" type="text" required />
 
-        <label>Posición</label>
-        <input formControlName="position" type="text" required />
+                    <label>Posición</label>
+                    <select formControlName="position" required>
+                        <option value="">Seleccionar posición</option>
+                        <option value="GK">GK</option>
+                        <option value="RB">RB</option>
+                        <option value="LB">LB</option>
+                        <option value="CB">CB</option>
+                        <option value="CDM">CDM</option>
+                        <option value="CM">CM</option>
+                        <option value="CAM">CAM</option>
+                        <option value="RM">RM</option>
+                        <option value="LM">LM</option>
+                        <option value="RW">RW</option>
+                        <option value="LW">LW</option>
+                        <option value="CF">CF</option>
+                        <option value="ST">ST</option>
+                        <option value="RWB">RWB</option>
+                        <option value="LWB">LWB</option>
+                    </select>
 
-        <label>Nacionalidad</label>
-        <input formControlName="nationality" type="text" required />
+                    <label>Nacionalidad</label>
+                    <input formControlName="nationality" type="text" required />
 
-        <label>Calificación</label>
-        <input formControlName="rating" type="number" min="1" max="99" required />
+                    <label>Calificación</label>
+                    <input formControlName="rating" type="number" min="1" max="99" required />
+                </div>
+                <div>
+                    <label>Velocidad</label>
+                    <input formControlName="speed" type="number" min="0" max="99" />
 
-        <label>Velocidad</label>
-        <input formControlName="speed" type="number" min="0" max="99" />
+                    <label>Remate</label>
+                    <input formControlName="shooting" type="number" min="0" max="99" />
 
-        <label>Remate</label>
-        <input formControlName="shooting" type="number" min="0" max="99" />
+                    <label>Dribbling</label>
+                    <input formControlName="dribbling" type="number" min="0" max="99" />
 
-        <label>Dribbling</label>
-        <input formControlName="dribbling" type="number" min="0" max="99" />
+                    <label>Pase</label>
+                    <input formControlName="passing" type="number" min="0" max="99" />
 
-        <label>Pase</label>
-        <input formControlName="passing" type="number" min="0" max="99" />
+                    <label>Versión FIFA</label>
+                    <input formControlName="fifaVersion" type="text" />
+                </div>
+            </div>
+            <div class="edit-form-actions">
+                <button type="submit" [disabled]="editForm.invalid">Aplicar</button>
+                <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+            </div>
+        </form>
 
-        <label>Versión FIFA</label>
-        <input formControlName="fifaVersion" type="text" />
-
-        <button type="submit" [disabled]="editForm.invalid">Aplicar</button>
-        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
-    </form>
+    }
 </div>

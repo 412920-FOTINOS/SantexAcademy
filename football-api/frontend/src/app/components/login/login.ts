@@ -32,7 +32,6 @@ export class LoginComponent {
             const token = await this.authService.login(username, password);
             if (token) {
                 this.error = null;
-                this.router.navigate(['/players']);
             } else {
                 this.error = 'Usuario o contraseña incorrectos';
             }

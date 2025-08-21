@@ -1,70 +1,134 @@
+/* Main container */
 .player-create-container {
-    max-width: 350px;
-    margin: 8vh auto;
-    padding: 2rem;
-    border-radius: 0.5rem;
+    max-width: 900px;
+    margin: 6vh auto;
+    padding: 0.8rem 2rem 2rem 2rem;
+    border-radius: 0.7rem;
     background: var(--fifa-gray-200);
     box-shadow: 0 2px 8px rgba(8,17,29,0.12);
-    color: var(--fifa-navy);
-}
-.player-create-container h2 {
-    text-align: center;
-    margin-bottom: 1.2rem;
-    color: var(--fifa-gold);
-    font-family: 'ClearGothicBold', Arial, sans-serif;
-}
-.player-create-container label {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-weight: 500;
     color: var(--fifa-white);
-}
-.player-create-container select {
-    width: 100%;
-    height: 2.4rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--fifa-gold-2);
-    border-radius: 0.25rem;
-    background: var(--fifa-gray-100);
-    color: var(--fifa-white);
+    font-family: Arial, sans-serif;
+    transition: box-shadow 0.2s, background 0.2s;
 }
 
+/* Title */
+.player-create-container h2 {
+    color: var(--fifa-gold);
+    font-family: 'ClearGothicBold', Arial, sans-serif;
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Form grid */
+.edit-form-grid {
+    /* Opcional: ancho/padding extra si querés */
+}
+
+.edit-form-columns {
+    display: grid;
+    grid-template-columns: 1fr 0.1fr 1fr; /* Dos columnas y espacio entre medio */
+    gap: 0 0; /* Sin gap horizontal, el espacio lo da la columna del medio */
+    align-items: start;
+}
+
+.edit-form-columns > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form-columns > .column-space {
+    /* Columna vacía para el espacio entre las dos columnas */
+}
+
+/* Inputs, selects y labels */
+.player-create-container label {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    font-weight: 500;
+    color: var(--fifa-gold);
+    letter-spacing: 0.04em;
+}
 .player-create-container input {
     width: 95%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
+    padding: 0.5em;
+    margin-bottom: 0.8em;
     border: 1px solid var(--fifa-gold-2);
-    border-radius: 0.25rem;
+    border-radius: 0.25em;
     background: var(--fifa-gray-100);
-    color: var(--fifa-white);
+    color: white;
+    font-size: 1em;
 }
-.player-create-container button {
-    width: 100%;
-    padding: 0.7rem;
-    background: var(--fifa-blue-accessible);
-    color: var(--fifa-white);
+.player-create-container select {
+    width: 100%; /* No modificar el width del select de posición */
+    padding: 0.5em;
+    margin-bottom: 0.8em;
+    border: 1px solid var(--fifa-gold-2);
+    border-radius: 0.25em;
+    background: var(--fifa-gray-100);
+    color: white;
+    font-size: 1em;
+}
+
+/* Botones edición */
+.edit-form-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: space-between; /* Botones pegados a las puntas */
+    margin-top: 1.2em;
+}
+.edit-form-actions button {
+    width: 45%;
+    height: 2.8em;
+    background-color: var(--fifa-gold);
+    color: var(--fifa-navy);
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 0.3em;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-size: 1em;
 }
-.player-create-container button:disabled {
-    background: #A3C2D4;
-    color: var(--fifa-navy);
-    cursor: not-allowed;
-    opacity: 0.8;
-}
-.player-create-container button:hover:not(:disabled) {
+.edit-form-actions button:hover {
     background: var(--fifa-blue-accent);
+    color: var(--fifa-white);
 }
+
+/* Mensajes */
 .success {
-    color: #4CAF50;
-    margin-top: 0.7rem;
+    margin-top: 1em;
+    color: var(--fifa-gold);
+    font-weight: bold;
     text-align: center;
 }
 .error {
-    color: #d32f2f;
-    margin-top: 0.7rem;
+    margin-top: 1em;
+    color: #ff4d4f;
+    font-weight: bold;
     text-align: center;
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+    .player-create-container {
+        max-width: 98vw;
+        padding: 1em;
+    }
+    .edit-form-columns {
+        grid-template-columns: 1fr;
+    }
+    .edit-form-actions {
+        justify-content: center;
+    }
+    .edit-form-actions button {
+        width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    .player-create-container h2 {
+        font-size: 1.3rem;
+    }
 }
